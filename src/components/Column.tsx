@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { ColumnContainer, ColumnTitle } from '../styles/appStyles'
-import { ColumnProps } from './types'
+import { ColumnProps } from '../types'
 import AddNewItem from './AddNewItem'
 
 const Column = ({text, children}: PropsWithChildren<ColumnProps>) => {

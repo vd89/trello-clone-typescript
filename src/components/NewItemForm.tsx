@@ -1,5 +1,5 @@
 import React, { KeyboardEvent, useState } from 'react'
-import { NewItemFormProps } from './types'
+import { NewItemFormProps } from '../types'
 import { NewItemButton, NewItemFromContainer, NewItemInput } from '../styles/appStyles'
 import { useFocus } from '../utils/useFocus'
 

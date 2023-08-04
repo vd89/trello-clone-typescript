@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AddNewItemProps } from './types'
+import { AddNewItemProps } from '../types'
 import { AddItemButton } from '../styles/appStyles'
 import NewItemForm from './NewItemForm'
 

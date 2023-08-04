@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AddItemButtonProps } from '../components/types';
+import { AddItemButtonProps } from '../types';
 
 export const AppComponent = styled.div`
   align-items: flex-start;
