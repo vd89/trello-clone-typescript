@@ -1,6 +1,7 @@
 
 export interface ColumnProps {
-  text: string
+  text: string,
+  index: number
 }
 
 export interface AddNewItemProps {
@@ -18,4 +19,23 @@ export interface AddItemButtonProps {
 
 export interface CardProps {
   text: string
+}
+
+
+export interface Task {
+  id: string,
+  text: string
+}
+
+export interface List {
+  id: string,
+  text: string,
+  tasks: Task[]
+}
+
+export interface AppState {
+  lists: List[]
+}
+export interface AppContextProps {
+  state: AppState
 }

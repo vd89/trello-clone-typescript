@@ -1,19 +1,15 @@
 import React, {FC} from 'react';
 import { AppComponent } from './styles/appStyles';
-import {AddNewItem, Card, Column} from './components';
+import {AddNewItem, Column} from './components';
+import { useAppState } from './states/AppContext';
 
 const App:FC = () => {
+  const {state} = useAppState()
   return (
    <AppComponent>
-    <Column text={'To Do'}>
-      <Card text='Generate app scaffold'/>
-    </Column>
-    <Column text={'In Progress'}>
-      <Card text='Learn Typescript'/>
-    </Column>
-    <Column text={'Done'}>
-      <Card text='Begin to use static typing'/>
-    </Column>
+      {state.lists.map((list, i) => (
+        <Column text={list.text} key={list.id} index={i}/>
+      ))}
      <AddNewItem toggleButtonText='+ Add another list' onAdd={console.log}/>
    </AppComponent>
   );
