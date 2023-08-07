@@ -1,12 +1,14 @@
+import React from "react"
 
 export interface ColumnProps {
-  text: string,
+  text: string
   index: number
+  id: string
 }
 
 export interface AddNewItemProps {
-  dark?: boolean,
-  toggleButtonText: string,
+  dark?: boolean
+  toggleButtonText: string
   onAdd (text: string): void
 }
 
@@ -38,4 +40,20 @@ export interface AppState {
 }
 export interface AppContextProps {
   state: AppState
+  dispatch: React.Dispatch<any>
+}
+
+export type Action =
+  | {
+    type: 'ADD_LIST'
+    payload: string
+  } | {
+    type: "ADD_TASK"
+    payload: {
+      text: string; listId: string
+    }
+  }
+
+export interface Item {
+  id: string
 }

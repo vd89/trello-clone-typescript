@@ -1,9 +1,39 @@
-import React, { PropsWithChildren, createContext, useContext } from "react";
-import { AppContextProps, AppState } from "../types";
+import React, { PropsWithChildren, createContext, useContext, useReducer } from "react";
+import { Action, AppContextProps, AppState } from "../types";
+import { nanoid } from "nanoid";
+import { findItemIndexById } from "../utils/useFocus";
 
 const AppContext = createContext<AppContextProps>({} as AppContextProps)
 
-const appReducer = (state: AppState, action: any ): AppState => state
+const appReducer = (state: AppState, action: Action ): AppState => {
+  switch (action.type) {
+    case "ADD_LIST":
+      return {
+        ...state,
+        lists:[
+          ...state.lists,
+          {id:nanoid(),text:action.payload,tasks:[]}
+        ]
+      }
+      case "ADD_TASK": {
+        const targetLaneIndex = findItemIndexById(
+          state.lists,
+          action.payload.listId
+        )
+        state.lists[targetLaneIndex].tasks.push({
+          id: nanoid(),
+          text: action.payload.text
+        })
+
+        return {
+          ...state
+        }
+      }
+
+      default:
+      return state
+  }
+}
 
 const appData: AppState = {
   lists:[
@@ -35,8 +65,9 @@ const appData: AppState = {
 }
 
 export const AppProvider = ({children}: PropsWithChildren<{}> ) => {
+  const [state, dispatch] = useReducer(appReducer, appData)
   return(
-      <AppContext.Provider value={{ state: appData }}>
+      <AppContext.Provider value={{ state, dispatch }}>
         {children}
       </AppContext.Provider>
       )
